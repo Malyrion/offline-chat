@@ -1,5 +1,8 @@
+export interface IAddUserPayload {
+    username: string;
+}
 
-export type userResponse ={
+export interface IAddUserResponse{
     id: string;
     created_at: Date;
     updated_at: Date;
