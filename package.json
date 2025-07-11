@@ -4,7 +4,9 @@
   "description": "My implementation of an offline first, full stack application",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run --dataSource src/utils/databaseConnector.ts",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert --dataSource src/utils/databaseConnector.ts"
   },
   "repository": {
     "type": "git",

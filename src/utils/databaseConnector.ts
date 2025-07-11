@@ -1,14 +1,12 @@
 import { DataSource, DataSourceOptions } from "typeorm";
+import { UserEntitySchema } from "../users/Data";
+import 'dotenv/config';
 
 const getMigrations = ():string[] => {
-    if(process.env.IS_LOCAL == 'true') {
         return [
             'src/migrations/**/*.ts',
         ];
-    }
-    return [
-        'dist/migrations/**/*.js',
-    ];
+
 }
 
 export const createDataSource = (config:DataSourceOptions):DataSource => {
@@ -19,7 +17,7 @@ export const databaseConfig: DataSourceOptions = {
     type: 'postgres',
     logging: true,
     synchronize: false,
-    entities: [],
+    entities: [UserEntitySchema],
     migrations: getMigrations(),
     subscribers: [],
     replication: {
