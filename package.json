@@ -1,0 +1,34 @@
+{
+  "name": "offline-chat",
+  "version": "1.0.0",
+  "description": "My implementation of an offline first, full stack application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Malyrion/offline-chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Malyrion/offline-chat/issues"
+  },
+  "homepage": "https://github.com/Malyrion/offline-chat#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.13",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "typeorm": "^0.3.25"
+  }
+}

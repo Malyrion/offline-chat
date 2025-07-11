@@ -1,0 +1,40 @@
+import { DataSource, DataSourceOptions } from "typeorm";
+
+const getMigrations = ():string[] => {
+    if(process.env.IS_LOCAL == 'true') {
+        return [
+            'src/migrations/**/*.ts',
+        ];
+    }
+    return [
+        'dist/migrations/**/*.js',
+    ];
+}
+
+export const createDataSource = (config:DataSourceOptions):DataSource => {
+    return new DataSource(config)
+}
+
+export const databaseConfig: DataSourceOptions = {
+    type: 'postgres',
+    logging: true,
+    synchronize: false,
+    entities: [],
+    migrations: getMigrations(),
+    subscribers: [],
+    replication: {
+        master: {
+            host: process.env.POSTGRES_HOST,
+            port:  Number(process.env.POSTGRES_PORT) || 5432,
+            username: process.env.POSTGRES_USER,
+            password: process.env.POSTGRES_PASSWORD,
+            database: process.env.POSTGRES_DB,
+            ssl: false,
+        },
+        slaves: [],
+    },
+}
+
+const AppDataSource = createDataSource(databaseConfig);
+
+export {AppDataSource}
