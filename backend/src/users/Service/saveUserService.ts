@@ -12,13 +12,11 @@ export const saveUserService: SaveUserService = async ({ username }:Readonly<sav
     if (existingUser) {
         console.log("Found existing user with id", existingUser.id);
         return existingUser as userResponse;
-    } else {
-        if(username !==undefined && username !== null && username !== "") {
+    } else if(username !==undefined && username !== null && username !== "") {
             const user = userRepository.create({ username: username});
             console.log("New user created with id", user.id);
             return await userRepository.save(user);
         }else{
             return {} as userResponse; 
         }
-    }
 }

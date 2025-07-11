@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "rootDir": "./src",
+    "rootDir": "backend/src",
     "outDir": "./dist",
    "noImplicitAny": true,
    "esModuleInterop": true,
@@ -11,7 +11,7 @@
    "alwaysStrict": false
   },
   "exclude": [
-    "node_modules",
+    "backend/node_modules",
     "dist",
     "**/*.test.ts"
   ]
