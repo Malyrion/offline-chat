@@ -8,7 +8,7 @@ export const saveUserDetailsRequest = (saveUserService:SaveUserService, response
     (request: Request, response: Response): void => {
 
     const sanitizedParameters ={
-        username: request.body.username
+        username: request.body.username ?? ""
     }
 
     const parameters: saveUserRequest = sanitizedParameters
