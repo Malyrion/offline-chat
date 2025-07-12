@@ -1,5 +1,6 @@
 import { groupResponse } from "./groupResponse";
 import { ResponseHandlerWithResponse } from "../../utils";
+import { SaveGroupMemberService } from "../../members/Domain";
 
 export type saveGroupRequest = {
     group_name: string;
@@ -19,6 +20,7 @@ export type GetGroupsService = () =>Promise<groupResponse[]>;
 
 export type SaveGroupDetailsType ={
     saveGroupService: SaveGroupService,
+    saveGroupMemberService: SaveGroupMemberService,
     parameters: saveGroupRequest;
     responseHandler: ResponseHandlerWithResponse
 }

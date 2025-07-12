@@ -1,8 +1,8 @@
 import { EntitySchema } from "typeorm";
-import { GroupEntity } from "./groupEntityTypes";
+import { GroupMembersEntity } from "./groupMembersEntityTypes";
 
-export const GroupEntitySchema = new EntitySchema<GroupEntity>({
-    name: "chat_groups",
+export const GroupMembersEntitySchema = new EntitySchema<GroupMembersEntity>({
+    name: "chat_group_members",
     columns: {
         id: {
             type: "uuid",
@@ -25,30 +25,42 @@ export const GroupEntitySchema = new EntitySchema<GroupEntity>({
             deleteDate: true,
             nullable: true,
         },
-        created_by: {
+        user_id: {
             type: 'uuid',
-            name: 'created_by',
+            name: 'user_id',
             nullable: false,
         },
-        group_name: {
-            type: "varchar",
-            length: "50",
+        group_id: {
+            type: 'uuid',
+            name: 'group_id',
             nullable: false,
+        },
+        join_date: {
+            name: "join_date",
+            type: "timestamp with time zone",
+            nullable: false,
+        },
+         is_active: {
+            name: "is_active",
+            type: "boolean",
+            nullable: false,
+            default: true,
         },
     },
     relations: {
-        owner: {
+        user: {
             type: "many-to-one",
             target: "chat_users",
             joinColumn: {
-                name: "created_by",
+                name: "user_id",
                 referencedColumnName: "id",
             },
-        },
-        members: {
-            type: "one-to-many",
-            target: "chat_group_members",
-            inverseSide: "group",
-        },
-    },
+        },group: {
+            type: "many-to-one",
+            target: "chat_groups",
+            joinColumn: {
+                name: "group_id",
+                referencedColumnName: "id",
+            },
+        }},
 });

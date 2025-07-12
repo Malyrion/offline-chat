@@ -1,3 +1,4 @@
+import { GroupMembersEntity } from "../../members/Data";
 import { UserEntity } from "../../users/Data";
 
 export type groupResponse ={
@@ -8,4 +9,5 @@ export type groupResponse ={
     created_by: string;
     group_name: string;
     owner?: UserEntity;
+    members?: GroupMembersEntity[]; 
 }

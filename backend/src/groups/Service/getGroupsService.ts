@@ -8,7 +8,7 @@ export const getGroupsService: GetGroupsService = async ():Promise<groupResponse
     const GroupRepository = AppDataSource.getRepository(GroupEntitySchema)
     console.log("Get request recieved by service for Groups");
 
-    const groups = await GroupRepository.find();
+    const groups = await GroupRepository.find({ relations: ['members'] });
     return groups as groupResponse[];
 
 }

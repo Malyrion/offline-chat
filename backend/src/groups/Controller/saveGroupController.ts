@@ -1,10 +1,16 @@
+import { SaveGroupMemberService } from "../../members/Domain";
 import { ResponseHandler } from "../../utils";
 import { SaveGroupDetailsType, saveGroupRequest, SaveGroupService } from "../Domain";
 import { Request,Response } from "express";
 
 type UseCase = (attributes: SaveGroupDetailsType) => Promise<void>;
 
-export const saveGroupDetailsRequest = (saveGroupService:SaveGroupService, responseHandler: ResponseHandler, useCase: UseCase)=>
+type Services = {
+    saveGroupService: SaveGroupService;
+    saveGroupMemberService: SaveGroupMemberService
+}
+
+export const saveGroupDetailsRequest = ({saveGroupService,saveGroupMemberService}:Services, responseHandler: ResponseHandler, useCase: UseCase)=>
     (request: Request, response: Response): void => {
 
     const sanitizedParameters ={
@@ -16,6 +22,7 @@ export const saveGroupDetailsRequest = (saveGroupService:SaveGroupService, respo
 
     void useCase({
         saveGroupService,
+        saveGroupMemberService,
         parameters,
         responseHandler: responseHandler(response)
     })
