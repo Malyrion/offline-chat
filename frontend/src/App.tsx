@@ -7,7 +7,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/chat" element={<Chat />} />
+      <Route path="/chat/:groupId" element={<Chat />} />
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import type {OfflineAction} from '../domain';
+import type {OfflineAction,GroupMessages} from '../domain';
 
 export const initialUserStoreValues = {
   userId: "",
@@ -14,3 +14,7 @@ export const initialGroupStoreValues = {
 export const initialQueueStoreValues = {
   actionQueue: [] as OfflineAction[],
 };
+
+export const initialChatStoreValues = {
+  groupMessages: {} as Record<string, GroupMessages[]>
+}
