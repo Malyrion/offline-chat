@@ -1,21 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import { useUserStore } from "../../store/useUserStore";
+import { useUserStore, useQueueStore } from "../../store";
 import { Button, Box, Center, Text } from "@chakra-ui/react";
 
 const Home = () => {
   const navigate = useNavigate();
   const { username, clearUser } = useUserStore();
+  const { clearQueue } = useQueueStore();
 
   const handleLogout = () => {
     clearUser();
-    navigate("/login");
+    clearQueue();
+    navigate("/");
   };
 
   return (
     <Center minH="100vh" bg="gray.50">
-      <Box w="100%" maxW="sm" p={8} borderRadius="lg" boxShadow="lg" bg="white" textAlign="center">
-        <Text fontSize="2xl" mb={6}>Welcome{username ? `, ${username}` : ""}!</Text>
-        <Button colorScheme="teal" size="lg" onClick={handleLogout} width="100%">
+      <Box
+        w="100%"
+        maxW="sm"
+        p={8}
+        borderRadius="lg"
+        boxShadow="lg"
+        bg="white"
+        textAlign="center"
+      >
+        <Text fontSize="2xl" mb={6}>
+          Welcome{username ? `, ${username}` : ""}!
+        </Text>
+        <Button
+          colorScheme="teal"
+          size="lg"
+          onClick={handleLogout}
+          width="100%"
+        >
           Log Out
         </Button>
       </Box>
