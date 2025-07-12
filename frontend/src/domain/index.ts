@@ -1,4 +1,4 @@
 import type { IAddUserPayload, IAddUserResponse } from "./userTypes";
-import type { OfflineAction } from "./queueTypes";
+import type { OfflineAction, GroupMessages } from "./queueTypes";
 
-export type {IAddUserPayload, IAddUserResponse, OfflineAction};
+export type {IAddUserPayload, IAddUserResponse, OfflineAction,GroupMessages};

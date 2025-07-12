@@ -4,3 +4,13 @@ export type OfflineAction = {
   payload: any; 
   createdAt: number; 
 };
+
+
+export type GroupMessages = {
+  groupId: string; 
+  userId: string;  
+  messageId: string; 
+  username: string;
+  text: string; 
+  createdAt: Date;
+};
