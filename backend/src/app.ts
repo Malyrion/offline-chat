@@ -7,13 +7,12 @@ import { saveUserService } from './users/Service';
 import { saveUserDetails } from './users/useCase/saveUserDetails';
 
 const app = express();
-app.use(cors(
-    {
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST', 'PATCH'],
-        allowedHeaders: ['Content-Type', 'Ceche-Control'],
-    }
-));
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Cache-Control'],
+    credentials: true,
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

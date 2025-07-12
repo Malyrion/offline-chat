@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import endpoints from "../api/endpoints";
 import type { IAddUserPayload, IAddUserResponse } from "../domain";
-import axiosInstance from "../utils/axiosInstance";
+import { useQueueStore,useUserStore } from "../store";
+import { generateUUID } from "../utils";
+import  axiosInstance  from "../utils/axiosInstance";
 
-const addUser = async (
-  payload: IAddUserPayload
-): Promise<IAddUserResponse> => {
+const addUser = async (payload: IAddUserPayload): Promise<IAddUserResponse> => {
   const response = await axiosInstance.post<IAddUserResponse>(
     endpoints.authentication.loginUser(),
     payload
@@ -13,15 +13,29 @@ const addUser = async (
   return response.data;
 };
 
-export const useAddUserMutationAPI = () => {
-  return useMutation<IAddUserResponse, Error, IAddUserPayload>({
-    mutationFn: async (payload) => {
-      if (!navigator.onLine) {
-        alert("You are offline. This action cannot be completed right now.");
-        throw new Error("Offline");
-      }
+ export const useAddUserMutationAPI = () => {
+  const addAction = useQueueStore((state) => state.addAction);
+  const setUserId = useUserStore((state) => state.setUserId);
+  const username = useUserStore((state) => state.username);
 
-      return await addUser(payload);
+  return useMutation<IAddUserResponse, Error, void>({
+    mutationFn: async () => {
+      if (!username) throw new Error("Username is not set");
+
+      try {
+        const response = await addUser({ username });
+        setUserId(response.id);
+        return response;
+      } catch (error) {
+        addAction({
+          id: generateUUID(),
+          type: "LOGIN",
+          createdAt: Date.now(),
+          payload: { username },
+        });
+
+        throw new Error("User creation failed. Queued for retry.");
+      }
     },
   });
 };

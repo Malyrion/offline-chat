@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist,devtools } from "zustand/middleware";
-import { initalUserStoreValues } from './initalStoreValues';
+import { initialUserStoreValues } from './initialStoreValues';
 import { asyncStorage } from './asyncStorage';
 
 export type UserStore = {
@@ -15,10 +15,10 @@ export const useUserStore = create<UserStore>()(
   devtools(
     persist(
       (set) => ({
-        ...initalUserStoreValues,
+        ...initialUserStoreValues,
         setUserId: (userId:string) => set({ userId }),
         setUsername: (username:string) => set({ username }),
-        clearUser: () => set({...initalUserStoreValues}),
+        clearUser: () => set({...initialUserStoreValues}),
       }),
       { 
         name: "loggedInUserInformation",

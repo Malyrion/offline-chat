@@ -3,23 +3,36 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../store/useUserStore";
 import LoginForm from "../molecules/LoginForm";
 import { Box, Center } from "@chakra-ui/react";
+import { useAddUserMutationAPI } from "../../services";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { username, setUsername } = useUserStore();
   const [input, setInput] = React.useState("");
+
+  // API
+  const { mutate: loginUser } = useAddUserMutationAPI();
+
+  // Store
+  const { username, setUsername } = useUserStore();
 
   useEffect(() => {
     if (username) {
-      navigate("/");
+      navigate("/home");
     }
   }, [username, navigate]);
 
   const handleLogin = () => {
-    if (input.trim()) {
-      setUsername(input.trim());
-      // API call can be added here later
-    }
+    const trimmed = input.trim();
+    if (!trimmed) return;
+    setUsername(trimmed);
+    loginUser(undefined, {
+      onSuccess: () => {
+        navigate("/home");
+      },
+      onError: () => {
+        // Handle error (e.g., show toast or message)
+      },
+    });
   };
 
   return (
@@ -27,7 +40,7 @@ const Login = () => {
       <Box w="100%" maxW="sm" p={8} borderRadius="lg" boxShadow="lg" bg="white">
         <LoginForm
           value={input}
-          onChange={e => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)}
           onSend={handleLogin}
         />
       </Box>
