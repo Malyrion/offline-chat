@@ -1,65 +1,61 @@
 import React from "react";
+import { Button as ChakraButton } from "@chakra-ui/react";
+import type { ButtonProps as ChakraButtonProps } from "@chakra-ui/react";
 import { useColors } from "../../hooks/useColors";
 
 export type ButtonVariants = "primary" | "secondary" | "outline";
 
-export type ButtonProps = {
-  onClick?: () => void;
+export type MainButtonProps = ChakraButtonProps & {
   variant?: ButtonVariants;
-  isDisabled?: boolean;
   isLoading?: boolean;
+  isDisabled?: boolean;
   title?: string;
 };
 
-const Button: React.FC<Readonly<ButtonProps>> = ({
+const MainButton: React.FC<Readonly<MainButtonProps>> = ({
   title,
   variant = "primary",
   onClick,
   isLoading = false,
   isDisabled = false,
+  ...rest
 }) => {
   const { primary, secondary, white, neutral } = useColors();
 
-  let backgroundColor = primary;
+  let bg = primary;
   let color = white;
   let border = "none";
 
   if (variant === "secondary") {
-    backgroundColor = secondary;
+    bg = secondary;
     color = white;
   } else if (variant === "outline") {
-    backgroundColor = "transparent";
+    bg = "transparent";
     color = primary;
     border = `2px solid ${primary}`;
   }
 
   if (isDisabled || isLoading) {
-    backgroundColor = neutral;
+    bg = neutral;
     color = white;
     border = "none";
   }
 
   return (
-    <button
-      type="button"
+    <ChakraButton
       onClick={!isDisabled && !isLoading ? onClick : undefined}
-      disabled={isDisabled || isLoading}
-      style={{
-        backgroundColor,
-        color,
-        border,
-        padding: "0.5rem 1.5rem",
-        borderRadius: "4px",
-        cursor: isDisabled || isLoading ? "not-allowed" : "pointer",
-        opacity: isDisabled || isLoading ? 0.7 : 1,
-        fontWeight: 600,
-        fontSize: "1rem",
-        transition: "background 0.2s, color 0.2s",
-      }}
+      size="lg"
+      width="100%"
+      background={bg}
+      color={color}
+      border={border}
+      _hover={{ opacity: 0.9 }}
+      _active={{ opacity: 0.8 }}
+      {...rest}
     >
-      {isLoading ? "Loading..." : title}
-    </button>
+      {title}
+    </ChakraButton>
   );
 };
 
-export default Button;
+export default MainButton;
