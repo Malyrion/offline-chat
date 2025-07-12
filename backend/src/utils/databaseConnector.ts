@@ -1,6 +1,7 @@
 import { DataSource, DataSourceOptions } from "typeorm";
 import { UserEntitySchema } from "../users/Data";
 import {GroupEntitySchema } from "../groups/Data";
+import { GroupMembersEntitySchema } from "../members/Data";
 
 import 'dotenv/config';
 
@@ -19,7 +20,7 @@ export const databaseConfig: DataSourceOptions = {
     type: 'postgres',
     logging: true,
     synchronize: false,
-    entities: [UserEntitySchema,GroupEntitySchema],
+    entities: [UserEntitySchema,GroupEntitySchema,GroupMembersEntitySchema],
     migrations: getMigrations(),
     subscribers: [],
     replication: {

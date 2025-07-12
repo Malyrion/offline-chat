@@ -9,6 +9,9 @@ import { saveUserDetails } from './users/useCase/';
 import { saveGroupDetailsRequest, getGroupsDetailsRequest } from './groups/Controller';
 import { saveGroupService,getGroupsService } from './groups/Service';
 import { saveGroupDetails,getGroupsDetails } from './groups/useCase';
+import { saveGroupMemberService } from './members/Service';
+import { saveGroupMemberDetailsRequest } from './members/Controller';
+import { saveGroupMemberDetails } from './members/useCase';
 
 const app = express();
 app.use(cors({
@@ -28,7 +31,7 @@ app.post("/users", saveUserDetailsRequest(saveUserService, responseHandler, save
 
 
 //Groups
-app.post("/groups", saveGroupDetailsRequest(saveGroupService, responseHandler, saveGroupDetails));
+app.post("/groups", saveGroupDetailsRequest({saveGroupService,saveGroupMemberService}, responseHandler, saveGroupDetails));
 app.get("/groups", getGroupsDetailsRequest(getGroupsService, responseHandler, getGroupsDetails));
-
+app.post("/groups/:groupId", saveGroupMemberDetailsRequest(saveGroupMemberService, responseHandler, saveGroupMemberDetails));
 export default app;
