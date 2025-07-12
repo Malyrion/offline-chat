@@ -1,3 +1,3 @@
-import ChatInput from "./ChatInput";
+import LoginForm from "./LoginForm";
 
-export { ChatInput };
+export { LoginForm };

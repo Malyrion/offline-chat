@@ -1,36 +1,14 @@
-import { useState } from "react";
 import "./App.css";
-import { ChatInput } from "./components/molecules";
-import { useUserStore } from "./store/useUserStore";
+import { Routes, Route } from "react-router-dom";
+import { Login, Chat, Home } from "./components/pages";
 
 function App() {
-  const [text, setText] = useState("");
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
-  // Store
-  const { userId, username, setUsername } = useUserStore();
-
-  console.log("User ID:", userId);
-  console.log("Username:", username);
-
-  const handleSend = () => {
-    if (!text.trim()) return;
-    setUsername(text);
-    setText("");
-  };
-
   return (
-    <div>
-      <p>Chat Service</p>
-      <ChatInput
-        value={text}
-        onChange={handleInputChange}
-        onSend={handleSend}
-      />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/chat" element={<Chat />} />
+    </Routes>
   );
 }
 

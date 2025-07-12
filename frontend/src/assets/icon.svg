@@ -1,0 +1,19 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- Box border -->
+  <rect x="1.5" y="1.5" width="237" height="237" rx="12" ry="12" stroke="#228B22" stroke-width="3" fill="none"/>
+
+  <!-- Tree -->
+  <g stroke="#228B22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Filled canopy layers -->
+    <path d="M65 150 L120 105 L175 150 Z" fill="#A8D5BA"/>
+    <path d="M75 125 L120 85 L165 125 Z" fill="#A8D5BA"/>
+    <path d="M85 105 L120 65 L155 105 Z" fill="#A8D5BA"/>
+    <path d="M95 85 L120 50 L145 85 Z" fill="#A8D5BA"/>
+
+    <!-- Tree trunk -->
+    <line x1="120" y1="150" x2="120" y2="200" stroke="#228B22"/>
+
+    <!-- Ground line -->
+    <line x1="60" y1="200" x2="180" y2="200" stroke="#228B22"/>
+  </g>
+</svg>

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from "zustand/middleware";
+import { persist,devtools } from "zustand/middleware";
 import { initalUserStoreValues } from './initalStoreValues';
 import { asyncStorage } from './asyncStorage';
 
@@ -12,6 +12,7 @@ export type UserStore = {
 };
 
 export const useUserStore = create<UserStore>()(
+  devtools(
     persist(
       (set) => ({
         ...initalUserStoreValues,
@@ -23,5 +24,5 @@ export const useUserStore = create<UserStore>()(
         name: "loggedInUserInformation",
         storage: asyncStorage,
       }
-    )
+    ))
 );
