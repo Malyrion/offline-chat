@@ -1,5 +1,7 @@
 import { DataSource, DataSourceOptions } from "typeorm";
 import { UserEntitySchema } from "../users/Data";
+import {GroupEntitySchema } from "../groups/Data";
+
 import 'dotenv/config';
 
 const getMigrations = ():string[] => {
@@ -17,7 +19,7 @@ export const databaseConfig: DataSourceOptions = {
     type: 'postgres',
     logging: true,
     synchronize: false,
-    entities: [UserEntitySchema],
+    entities: [UserEntitySchema,GroupEntitySchema],
     migrations: getMigrations(),
     subscribers: [],
     replication: {
