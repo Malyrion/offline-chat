@@ -1,3 +1,6 @@
+<img width="544" height="467" alt="image" src="https://github.com/user-attachments/assets/ff6a14c6-2444-484b-b40b-3ab2b87d89af" />
+
+
 # Offline Chat Application
 
 A full-stack chat application with offline-first capabilities, built with React (frontend) and Node.js (backend).
