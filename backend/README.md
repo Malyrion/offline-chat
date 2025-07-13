@@ -18,12 +18,13 @@ A Node.js backend API for the offline chat application, built with TypeScript, E
 2. **Set up environment variables:**
    Create a `.env` file in the root directory:
    ```env
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USERNAME=your_username
-   DB_PASSWORD=your_password
-   DB_DATABASE=offline_chat
-   PORT=3000
+    POSTGRES_PORT=5432
+    POSTGRES_USER=postgres
+    POSTGRES_PASSWORD=postgres
+    POSTGRES_DB=<your_db_name>
+    PORT=3000
+    POSTGRES_HOST=localhost
+    IS_LOCAL=true
    ```
 
 3. **Run database migrations:**
