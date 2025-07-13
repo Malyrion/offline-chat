@@ -11,7 +11,7 @@ export const getGroupsDetails = async({
     try{
         const groups = await getGroupsService();
         const [openGroups, joinedGroups] = filterUserOwnedGroups(groups, userId);
-        return responseHandler({parsedResponse:{openGroups: openGroups, joinedGroups: joinedGroups}});
+        return responseHandler({parsedResponse:{openGroups: openGroups, yourGroups: joinedGroups}});
     }catch (error) {
         responseHandler({error: error as Error});
     }
