@@ -4,6 +4,7 @@ import {GroupEntitySchema } from "../groups/Data";
 import { GroupMembersEntitySchema } from "../members/Data";
 
 import 'dotenv/config';
+import { MessagesEntitySchema } from "../messages/Data";
 
 const getMigrations = ():string[] => {
         return [
@@ -20,7 +21,7 @@ export const databaseConfig: DataSourceOptions = {
     type: 'postgres',
     logging: true,
     synchronize: false,
-    entities: [UserEntitySchema,GroupEntitySchema,GroupMembersEntitySchema],
+    entities: [UserEntitySchema,GroupEntitySchema,GroupMembersEntitySchema,MessagesEntitySchema],
     migrations: getMigrations(),
     subscribers: [],
     replication: {
