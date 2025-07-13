@@ -1,16 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import endpoints from "../api/endpoints";
-import type { IAddUserPayload, IAddUserResponse } from "../domain";
+import type { IAddUserPayload, IAddUserResponse, UserEntity} from "../domain";
 import { useQueueStore,useUserStore } from "../store";
 import { generateUUID } from "../utils";
 import  axiosInstance  from "../utils/axiosInstance";
 
-const addUser = async (payload: IAddUserPayload): Promise<IAddUserResponse> => {
+const addUser = async (payload: IAddUserPayload): Promise<UserEntity> => {
   const response = await axiosInstance.post<IAddUserResponse>(
     endpoints.authentication.loginUser(),
     payload
   );
-  return response.data;
+  return response.data.user;
 };
 
  export const useAddUserMutationAPI = () => {
@@ -18,7 +18,7 @@ const addUser = async (payload: IAddUserPayload): Promise<IAddUserResponse> => {
   const setUserId = useUserStore((state) => state.setUserId);
   const username = useUserStore((state) => state.username);
 
-  return useMutation<IAddUserResponse, Error, void>({
+  return useMutation<UserEntity, Error, void>({
     mutationFn: async () => {
       if (!username) throw new Error("Username is not set");
 

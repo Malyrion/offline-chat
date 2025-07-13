@@ -34,7 +34,7 @@ app.post("/users", saveUserDetailsRequest(saveUserService, responseHandler, save
 
 //Groups
 app.post("/groups", saveGroupDetailsRequest({saveGroupService,saveGroupMemberService}, responseHandler, saveGroupDetails));
-app.get("/groups", getGroupsDetailsRequest(getGroupsService, responseHandler, getGroupsDetails));
+app.get("/groups/:userId", getGroupsDetailsRequest(getGroupsService, responseHandler, getGroupsDetails));
 app.post("/groups/:groupId", saveGroupMemberDetailsRequest(saveGroupMemberService, responseHandler, saveGroupMemberDetails));
 
 //Messages
