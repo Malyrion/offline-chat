@@ -1,4 +1,3 @@
-import { group } from "console";
 import { AppDataSource } from "../../utils/databaseConnector";
 import { GroupMembersEntitySchema } from "../Data";
 import { saveGroupMemberRequest, SaveGroupMemberService, groupMembersResponse } from "../Domain";
