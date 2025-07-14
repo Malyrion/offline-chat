@@ -45,7 +45,7 @@ A Node.js backend API for the offline chat application, built with TypeScript, E
 - `npm run dev` - Start development server with hot reload
 - `npm run migration:run` - Run pending migrations
 - `npm run migration:revert` - Revert last migration
-- `npx typeorm migration:create src/migrations/<MigrationName>` - Revert last migration
+- `npx typeorm migration:create src/migrations/<MigrationName>` - Create new migraiton
 
 
 ## Project Structure
